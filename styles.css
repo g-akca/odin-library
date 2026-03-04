@@ -1,9 +1,19 @@
 /* Root Styles */
 :root {
-    --color-1: #E14242;
-    --color-2: #8D3434;
-    --color-3: #EACD65;
-    --color-4: #EBEBCD;
+    --header: #41431B;
+    --bg: #AEB784;
+
+    --card: #E3DBBB;
+    --card-main: #f6efd5;
+
+    --text: #2A2A1F;
+    --text-light: #5a5a4b;
+
+    --border: #8E9568;
+
+    --read: #2f8e32;
+    --not-read: #F59E0B;
+    --delete: #EF4444;
 }
 
 /* General Styles */
@@ -12,8 +22,91 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
+/* Header Styles */
 header {
-    height: 100px;
+    height: 70px;
+    background-color: var(--header);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    color: white;
+}
+
+h1, p {
+    margin: 0;
+}
+
+/* Books Section Styles */
+#books-section {
+    padding: 50px 75px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Book Card Styles */
+.book-card {
+    background-color: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.book-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+}
+
+.book-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.book-author {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.book-main {
+    padding: 24px 18px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-light);
+    background-color: var(--card-main);
+    flex-grow: 1;
+}
+
+.book-footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 24px;
+    padding: 16px;
+}
+
+.book-footer button {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+.not-read {
+    background-color: var(--not-read);
+}
+
+.read {
+    background-color: var(--read);
+}
+
+.delete {
+    background-color: var(--delete);
 }
