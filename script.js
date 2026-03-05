@@ -33,6 +33,13 @@ function deleteBook(id) {
     displayBooks();
 }
 
+function toggleRead(id) {
+    const book = myLibrary.find(book => book.id == id);
+    if (book) book.toggleRead();
+
+    displayBooks();
+}
+
 function displayBooks() {
     booksSection.innerHTML = "";
     myLibrary.forEach(book => {
@@ -50,7 +57,7 @@ function displayBooks() {
                 <p>${book.description}</p>
             </div>
             <div class="book-footer">
-                <button type="button" class="${book.read ? "read" : "not-read"}">${!book.read ? "NOT " : ""}READ</button>
+                <button type="button" class="${book.read ? "read" : "not-read"} toggle-read" data-id="${book.id}">${!book.read ? "NOT " : ""}READ</button>
                 <button type="button" class="delete" data-id="${book.id}">DELETE</button>
             </div>
         `;
@@ -69,9 +76,11 @@ form.addEventListener("submit", (e) => {
     const author = form.elements["author"].value;
     const pages = form.elements["pages"].value;
     const description = form.elements["description"].value;
-    const read = form.elements["read"].value;
+    const read = form.elements["read"].value == "true" ? true : false;
 
     addBookToLibrary(title, author, pages, description, read);
+
+    form.reset();
     dialog.close();
     displayBooks();
 });
@@ -79,6 +88,10 @@ form.addEventListener("submit", (e) => {
 booksSection.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete")) {
         deleteBook(e.target.dataset.id);
+    }
+
+    if (e.target.classList.contains("toggle-read")) {
+        toggleRead(e.target.dataset.id);
     }
 });
 
