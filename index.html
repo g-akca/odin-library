@@ -14,10 +14,42 @@
         <header>
             <h1>My Library</h1>
         </header>
+
         <main>
             <section id="books-section"></section>
 
-            <button type="button" id="open-dialog">+</button>
+            <button type="button" id="open-dialog" command="show-modal" commandfor="add-modal">+</button>
         </main>
+
+        <dialog id="add-modal">
+            <div id="modal-header">
+                <h2>Add New Book</h2>
+                <button commandfor="add-modal" command="close">X</button>
+            </div>
+
+            <form>
+                <div class="form-div">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-div">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+
+                <div class="form-div">
+                    <label for="pages">Number of Pages</label>
+                    <input type="number" id="pages" name="pages" required>
+                </div>
+
+                <div class="form-div">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"></textarea>
+                </div>
+
+                <button type="submit">Add Book</button>
+            </form>
+        </dialog>
     </body>
 </html>
