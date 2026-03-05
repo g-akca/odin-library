@@ -23,6 +23,16 @@ function addBookToLibrary(title, author, pages, description, read) {
     myLibrary.push(newBook);
 }
 
+function deleteBookFromLibrary(id) {
+    const index = myLibrary.findIndex(book => book.id == id);
+    if (index != -1) myLibrary.splice(index, 1);
+}
+
+function deleteBook(id) {
+    deleteBookFromLibrary(id);
+    displayBooks();
+}
+
 function displayBooks() {
     booksSection.innerHTML = "";
     myLibrary.forEach(book => {
@@ -41,7 +51,7 @@ function displayBooks() {
             </div>
             <div class="book-footer">
                 <button type="button" class="${book.read ? "read" : "not-read"}">${!book.read ? "NOT " : ""}READ</button>
-                <button type="button" class="delete">DELETE</button>
+                <button type="button" class="delete" data-id="${book.id}">DELETE</button>
             </div>
         `;
 
@@ -64,6 +74,12 @@ form.addEventListener("submit", (e) => {
     addBookToLibrary(title, author, pages, description, read);
     dialog.close();
     displayBooks();
+});
+
+booksSection.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete")) {
+        deleteBook(e.target.dataset.id);
+    }
 });
 
 displayBooks();
