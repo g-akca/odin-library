@@ -103,18 +103,37 @@ button {
     font-weight: 600;
     cursor: pointer;
     color: white;
+    transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
 }
 
 .not-read {
     background-color: var(--not-read);
 }
 
+.not-read:hover {
+    background-color: white;
+    color: var(--not-read);
+    outline: 1px solid var(--not-read);
+}
+
 .read {
     background-color: var(--read);
 }
 
+.read:hover, form button:hover {
+    background-color: white;
+    color: var(--read);
+    outline: 1px solid var(--read);
+}
+
 .delete {
     background-color: var(--delete);
+}
+
+.delete:hover {
+    background-color: white;
+    color: var(--delete);
+    outline: 1px solid var(--delete);
 }
 
 /* Add Book Button */
@@ -131,6 +150,12 @@ button {
     height: 72px;
     cursor: pointer;
     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#open-dialog:hover {
+    transform: translateY(-10px);
+    background-color: var(--read);
 }
 
 /* Add Book Dialog */
@@ -170,6 +195,7 @@ button {
     width: 32px;
     height: 32px;
     color: var(--header);
+    transition: background-color 0.2s ease;
 }
 
 #close-dialog:hover {
@@ -182,9 +208,10 @@ form {
     gap: 16px;
 }
 
-.form-div {
+.form-div, .radio-div {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
 .form-div label, .radio-div p {
@@ -238,4 +265,5 @@ form button {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
 }
