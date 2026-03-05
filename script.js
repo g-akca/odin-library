@@ -1,16 +1,9 @@
-const myLibrary = [
-    {
-        title: "Title",
-        author: "Author Person",
-        pages: "150",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. Ut enim exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        read: false
-    }
-];
+const myLibrary = [];
 const booksSection = document.getElementById("books-section");
 const dialog = document.getElementById("add-modal");
 const openBtn = document.getElementById("open-dialog");
 const closeBtn = document.getElementById("close-dialog");
+const form = document.querySelector("form");
 
 function Book(title, author, pages, description, read) {
     this.id = crypto.randomUUID();
@@ -31,6 +24,7 @@ function addBookToLibrary(title, author, pages, description, read) {
 }
 
 function displayBooks() {
+    booksSection.innerHTML = "";
     myLibrary.forEach(book => {
         const newElement = document.createElement("div");
         newElement.classList.add("book-card");
@@ -46,7 +40,7 @@ function displayBooks() {
                 <p>${book.description}</p>
             </div>
             <div class="book-footer">
-                <button type="button" class="not-read">NOT READ</button>
+                <button type="button" class="${book.read ? "read" : "not-read"}">${!book.read ? "NOT " : ""}READ</button>
                 <button type="button" class="delete">DELETE</button>
             </div>
         `;
@@ -57,5 +51,19 @@ function displayBooks() {
 
 openBtn.addEventListener("click", () => dialog.showModal());
 closeBtn.addEventListener("click", () => dialog.close());
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = form.elements["title"].value;
+    const author = form.elements["author"].value;
+    const pages = form.elements["pages"].value;
+    const description = form.elements["description"].value;
+    const read = form.elements["read"].value;
+
+    addBookToLibrary(title, author, pages, description, read);
+    dialog.close();
+    displayBooks();
+});
 
 displayBooks();
