@@ -8,6 +8,9 @@ const myLibrary = [
     }
 ];
 const booksSection = document.getElementById("books-section");
+const dialog = document.getElementById("add-modal");
+const openBtn = document.getElementById("open-dialog");
+const closeBtn = document.getElementById("close-dialog");
 
 function Book(title, author, pages, description, read) {
     this.id = crypto.randomUUID();
@@ -51,5 +54,8 @@ function displayBooks() {
         booksSection.appendChild(newElement);
     });
 }
+
+openBtn.addEventListener("click", () => dialog.showModal());
+closeBtn.addEventListener("click", () => dialog.close());
 
 displayBooks();
